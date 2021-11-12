@@ -12,17 +12,17 @@ def render_progressbar(total, iteration, prefix='', suffix='', length=30, fill='
     return '{0} |{1}| {2}% {3}'.format(prefix, pbar, percent, suffix)
 
 message = "Осталось секунд:"
- 
+
 TG_TOKEN = os.environ['TG_TOKEN']
 
 bot = ptbot.Bot(TG_TOKEN)
- 
+
 
 def notify(TG_CHAT_ID):
    bot.send_message(TG_CHAT_ID, 'Время вышло!')
 
 def notify_progress(secs_left, message_id, TG_CHAT_ID, question):
-    bot.update_message(TG_CHAT_ID, message_id, f'Осталось секунд:{secs_left}\n{render_progressbar(parse(question), secs_left)}')
+    bot.update_message(TG_CHAT_ID, message_id, f'Осталось криопампов:{secs_left}\n{render_progressbar(parse(question), secs_left)}')
 def choose(TG_CHAT_ID, question):
    message_id = bot.send_message(TG_CHAT_ID, message)
    bot.create_countdown(parse(question), notify_progress, message_id=message_id,TG_CHAT_ID=TG_CHAT_ID, question=question)
